@@ -28,7 +28,7 @@ result = round((close - open) / open * 100, 2)
 if abs(result) > 5:
     # Gathering related news articles
     news_response = requests.get(
-        url=f"https://newsapi.org/v2/everything?language=en&q={COMPANY_NAME}+stock&from={yesterday}&sortBy=relevancy&apiKey={NEWS_API_KEY}"
+        url=f"https://newsapi.org/v2/everything?language=en&q={COMPANY_NAME}+stock&qinTitle={COMPANY_NAME}&from={yesterday}&sortBy=relevancy&apiKey={NEWS_API_KEY}"
     )
     news_response.raise_for_status()
     news_data = news_response.json()

@@ -25,7 +25,7 @@ stock_data = stocks_response.json()
 open = float(stock_data["Time Series (Daily)"][yesterday]["1. open"])
 close = float(stock_data["Time Series (Daily)"][yesterday]["4. close"])
 result = round((close - open) / open * 100, 2)
-if abs(result) > 1:  # 5% here
+if abs(result) > 5:
     # Gathering related news articles
     news_response = requests.get(
         url=f"https://newsapi.org/v2/everything?language=en&q={COMPANY_NAME}+stock&from={yesterday}&sortBy=relevancy&apiKey={NEWS_API_KEY}"

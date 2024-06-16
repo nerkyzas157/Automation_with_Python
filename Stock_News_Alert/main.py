@@ -32,19 +32,20 @@ if abs(result) > 5:
     )
     news_response.raise_for_status()
     news_data = news_response.json()
-    headline = f"\"{news_data["articles"][0]["source"]["name"]}\" says: {news_data["articles"][0]["title"]}."
-    description = f"Description: {news_data["articles"][0]["description"]}"
+    headline = f"\"{news_data["articles"][0]["source"]["name"]}\" says: {news_data["articles"][0]["title"]}.".encode("utf-8")
+    description = f"Description: {news_data["articles"][0]["description"]}".encode("utf-8")
+    print("Send email.")
     if result > 0:
-        emoji = "🔺"
+        res = "UP"
     else:
-        emoji = "🔻"
-    label = f"{STOCK}: {emoji}{abs(result)}%"
+        res = "DOWN"
+    label = f"{STOCK}: {res} {abs(result)}%".encode("utf-8")
     # Sending an email
     connection = smtplib.SMTP("smtp.gmail.com", port=587)
     connection.starttls()
     connection.login(user=MY_EMAIL, password=APP_PASS)
     connection.sendmail(
         from_addr=MY_EMAIL,
-        to_addrs="email@gmail.com",
+        to_addrs="nerijus157@gmail.com",
         msg=f"{label}\n\n{headline}\n{description}.",
     )

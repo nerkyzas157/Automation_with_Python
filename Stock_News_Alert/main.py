@@ -46,6 +46,6 @@ if abs(result) > 5:
     connection.login(user=MY_EMAIL, password=APP_PASS)
     connection.sendmail(
         from_addr=MY_EMAIL,
-        to_addrs="nerijus157@gmail.com",
+        to_addrs="target email",
         msg=f"{label}\n\n{headline}\n{description}.",
     )
